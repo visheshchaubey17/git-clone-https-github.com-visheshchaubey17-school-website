@@ -50,7 +50,6 @@
             overflow-x: hidden;
         }
 
-        /* Container for content */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -91,6 +90,7 @@
             align-items: center;
             gap: 10px;
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .logo:hover {
@@ -138,7 +138,6 @@
             color: var(--accent-color);
         }
 
-        /* Mobile Menu Toggle Button */
         .menu-toggle {
             display: none;
             background: none;
@@ -150,6 +149,71 @@
         }
 
         .menu-toggle:hover {
+            transform: rotate(90deg);
+        }
+
+        /* ===========================
+           MODAL STYLING
+           =========================== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            animation: slideInUp 0.4s ease;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .modal-header h2 {
+            color: var(--primary-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            padding: 0;
+            width: auto;
+        }
+
+        .close-btn:hover {
+            color: var(--error-color);
             transform: rotate(90deg);
         }
 
@@ -236,6 +300,52 @@
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: var(--bg-white);
+            padding: 80px 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e8f4ff 100%);
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .benefit-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .benefit-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .benefit-card p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.7;
         }
 
         /* About Section */
@@ -384,12 +494,11 @@
         .course-icon {
             font-size: 50px;
             margin-bottom: 20px;
-            display: inline-block;
+            display: inline-flex;
             width: 80px;
             height: 80px;
             background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
             border-radius: 12px;
-            display: flex;
             align-items: center;
             justify-content: center;
         }
@@ -414,6 +523,7 @@
             align-items: center;
             padding-top: 20px;
             border-top: 1px solid var(--border-color);
+            margin-bottom: 15px;
         }
 
         .course-duration {
@@ -432,6 +542,23 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
+        }
+
+        .enroll-btn {
+            width: 100%;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #ffb300 100%);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .enroll-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 204, 0, 0.3);
         }
 
         /* Contact Section */
@@ -521,7 +648,8 @@
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 14px 18px;
             border: 2px solid rgba(255, 255, 255, 0.2);
@@ -538,8 +666,14 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
+        .form-group select option {
+            color: var(--text-dark);
+            background: var(--bg-white);
+        }
+
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--accent-color);
             background: rgba(255, 255, 255, 0.15);
@@ -604,7 +738,6 @@
             padding: 16px 0;
         }
 
-        /* Error Message Styling */
         .error-message {
             color: #ffb3b3;
             font-size: 12px;
@@ -613,7 +746,6 @@
             font-weight: 500;
         }
 
-        /* Success Message */
         .success-message {
             background: linear-gradient(135deg, var(--success-color) 0%, #45a049 100%);
             color: white;
@@ -624,9 +756,12 @@
             box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
             animation: slideInDown 0.5s ease;
             font-weight: 600;
-            display: flex;
             align-items: center;
             gap: 10px;
+        }
+
+        .success-message.show {
+            display: flex;
         }
 
         .success-message i {
@@ -692,6 +827,7 @@
             justify-content: center;
             transition: all 0.3s ease;
             color: white;
+            text-decoration: none;
         }
 
         .social-links a:hover {
@@ -734,6 +870,15 @@
             }
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
         @keyframes float {
             0%, 100% {
                 transform: translateY(0px);
@@ -752,34 +897,40 @@
             }
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.7;
-            }
-        }
-
-        /* Loading Spinner */
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
             border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            z-index: 999;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .scroll-to-top.show {
+            display: flex;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 102, 204, 0.4);
         }
 
         /* ===========================
            RESPONSIVE DESIGN
            =========================== */
         @media (max-width: 768px) {
-            /* Header Responsive */
             nav ul {
                 gap: 20px;
             }
@@ -823,7 +974,6 @@
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
-            /* Welcome Content Responsive */
             #home {
                 min-height: 500px;
                 padding: 40px 0;
@@ -847,7 +997,6 @@
                 max-width: 300px;
             }
 
-            /* About Section Responsive */
             .about-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -857,13 +1006,11 @@
                 order: -1;
             }
 
-            /* Courses Grid Responsive */
             .courses-grid {
                 grid-template-columns: 1fr;
                 gap: 25px;
             }
 
-            /* Contact Section Responsive */
             .contact-wrapper {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -873,15 +1020,14 @@
                 padding: 30px 20px;
             }
 
-            /* Section Padding Responsive */
             section {
                 padding: 50px 0;
             }
 
-            .about-text h2,
-            #courses h2,
-            #contact h2 {
-                font-size: 32px;
+            .modal-content {
+                width: 95%;
+                max-height: 90vh;
+                padding: 30px;
             }
         }
 
@@ -892,16 +1038,6 @@
 
             .welcome-content p {
                 font-size: 14px;
-            }
-
-            .about-text h2,
-            #courses h2,
-            #contact h2 {
-                font-size: 24px;
-            }
-
-            nav a {
-                font-size: 12px;
             }
 
             button {
@@ -921,36 +1057,42 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: var(--shadow-lg);
-            transition: all 0.3s ease;
-            z-index: 999;
+        /* Two column form for enrollment */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
-        .scroll-to-top.show {
-            display: flex;
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .scroll-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 102, 204, 0.4);
+        .info-box {
+            background: linear-gradient(135deg, #e8f4ff 0%, #f0f9ff 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: var(--text-light);
+            font-size: 13px;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -960,7 +1102,7 @@
          =========================== -->
     <header id="header">
         <div class="header-content">
-            <div class="logo">
+            <div class="logo" onclick="showSection('home')">
                 <span class="logo-icon">🎓</span>
                 <span>Education Hub</span>
             </div>
@@ -992,6 +1134,50 @@
                 <button class="welcome-btn" onclick="showSection('courses')" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%); color: white; border: 2px solid white;">
                     <i class="fas fa-book"></i> Explore Courses
                 </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================
+         BENEFITS SECTION
+         =========================== -->
+    <section class="benefits-section active" style="display: block;">
+        <div class="container">
+            <div class="section-title">
+                <p>Why Choose Us</p>
+                <h2>Why Our Students Love Education Hub</h2>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏆</div>
+                    <h3>Award-Winning Programs</h3>
+                    <p>Recognized nationally for excellence in education and student achievement.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">👨‍🏫</div>
+                    <h3>Expert Instructors</h3>
+                    <p>Learn from industry professionals with 10+ years of teaching experience.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📱</div>
+                    <h3>Online & Offline</h3>
+                    <p>Flexible learning options that fit your schedule and lifestyle.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💼</div>
+                    <h3>Career Support</h3>
+                    <p>Get job placement assistance and career guidance after graduation.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌐</div>
+                    <h3>Global Community</h3>
+                    <p>Connect with students from around the world in our learning network.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📜</div>
+                    <h3>Recognized Certificate</h3>
+                    <p>Earn certificates recognized by leading institutions worldwide.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1064,6 +1250,9 @@
                         </div>
                         <div class="course-level">Advanced</div>
                     </div>
+                    <button class="enroll-btn" onclick="openEnrollModal('English Literature')">
+                        <i class="fas fa-edit"></i> Enroll Now
+                    </button>
                 </div>
 
                 <!-- Course 2 -->
@@ -1080,6 +1269,9 @@
                         </div>
                         <div class="course-level">Intermediate</div>
                     </div>
+                    <button class="enroll-btn" onclick="openEnrollModal('Mathematics')">
+                        <i class="fas fa-edit"></i> Enroll Now
+                    </button>
                 </div>
 
                 <!-- Course 3 -->
@@ -1096,6 +1288,9 @@
                         </div>
                         <div class="course-level">Advanced</div>
                     </div>
+                    <button class="enroll-btn" onclick="openEnrollModal('Science')">
+                        <i class="fas fa-edit"></i> Enroll Now
+                    </button>
                 </div>
 
                 <!-- Course 4 -->
@@ -1112,6 +1307,9 @@
                         </div>
                         <div class="course-level">Beginner</div>
                     </div>
+                    <button class="enroll-btn" onclick="openEnrollModal('Computer Science')">
+                        <i class="fas fa-edit"></i> Enroll Now
+                    </button>
                 </div>
 
                 <!-- Course 5 -->
@@ -1128,6 +1326,9 @@
                         </div>
                         <div class="course-level">Intermediate</div>
                     </div>
+                    <button class="enroll-btn" onclick="openEnrollModal('Languages')">
+                        <i class="fas fa-edit"></i> Enroll Now
+                    </button>
                 </div>
 
                 <!-- Course 6 -->
@@ -1144,6 +1345,9 @@
                         </div>
                         <div class="course-level">Beginner</div>
                     </div>
+                    <button class="enroll-btn" onclick="openEnrollModal('Arts & Creativity')">
+                        <i class="fas fa-edit"></i> Enroll Now
+                    </button>
                 </div>
             </div>
         </div>
@@ -1207,79 +1411,53 @@
                 </div>
 
                 <div class="contact-container">
-                    <!-- Success Message (Hidden by default) -->
                     <div class="success-message" id="successMessage">
                         <i class="fas fa-check-circle"></i>
-                        <span>Thank you! Your message has been sent successfully. We'll get back to you soon!</span>
+                        <span>Thank you! We'll get back to you soon!</span>
                     </div>
 
-                    <!-- Contact Form -->
-                    <form id="contactForm" onsubmit="submitForm(event)">
-                        <!-- Name Field -->
+                    <form id="contactForm" onsubmit="submitContactForm(event)">
                         <div class="form-group">
-                            <label for="name">
+                            <label for="contact-name">
                                 <i class="fas fa-user"></i> Full Name *
                             </label>
-                            <input 
-                                type="text" 
-                                id="name" 
-                                name="name" 
-                                placeholder="John Doe"
-                            >
-                            <div class="error-message" id="nameError">
+                            <input type="text" id="contact-name" name="name" placeholder="John Doe">
+                            <div class="error-message" id="contactNameError">
                                 <i class="fas fa-exclamation-circle"></i> Please enter your full name
                             </div>
                         </div>
 
-                        <!-- Email Field -->
                         <div class="form-group">
-                            <label for="email">
+                            <label for="contact-email">
                                 <i class="fas fa-envelope"></i> Email Address *
                             </label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                name="email" 
-                                placeholder="john@example.com"
-                            >
-                            <div class="error-message" id="emailError">
-                                <i class="fas fa-exclamation-circle"></i> Please enter a valid email address
+                            <input type="email" id="contact-email" name="email" placeholder="john@example.com">
+                            <div class="error-message" id="contactEmailError">
+                                <i class="fas fa-exclamation-circle"></i> Please enter a valid email
                             </div>
                         </div>
 
-                        <!-- Subject Field -->
                         <div class="form-group">
-                            <label for="subject">
+                            <label for="contact-subject">
                                 <i class="fas fa-heading"></i> Subject *
                             </label>
-                            <input 
-                                type="text" 
-                                id="subject" 
-                                name="subject" 
-                                placeholder="Course Inquiry"
-                            >
-                            <div class="error-message" id="subjectError">
+                            <input type="text" id="contact-subject" name="subject" placeholder="Your Subject">
+                            <div class="error-message" id="contactSubjectError">
                                 <i class="fas fa-exclamation-circle"></i> Please enter a subject
                             </div>
                         </div>
 
-                        <!-- Message Field -->
                         <div class="form-group">
-                            <label for="message">
+                            <label for="contact-message">
                                 <i class="fas fa-comments"></i> Message *
                             </label>
-                            <textarea 
-                                id="message" 
-                                name="message" 
-                                placeholder="Tell us about your inquiry..."
-                            ></textarea>
-                            <div class="error-message" id="messageError">
+                            <textarea id="contact-message" name="message" placeholder="Your message here..."></textarea>
+                            <div class="error-message" id="contactMessageError">
                                 <i class="fas fa-exclamation-circle"></i> Please enter your message
                             </div>
                         </div>
 
-                        <!-- Submit Button -->
-                        <button type="submit" class="submit-btn" id="submitBtn">
+                        <button type="submit" class="submit-btn">
                             <i class="fas fa-paper-plane"></i> Send Message
                         </button>
                     </form>
@@ -1287,6 +1465,158 @@
             </div>
         </div>
     </section>
+
+    <!-- ===========================
+         ENROLLMENT MODAL
+         =========================== -->
+    <div id="enrollmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-graduation-cap"></i> Enroll in <span id="courseName">Course</span></h2>
+                <button class="close-btn" onclick="closeEnrollModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="info-box">
+                <h4>📋 What to Provide</h4>
+                <p>We need your basic information to process your enrollment and provide course access details.</p>
+            </div>
+
+            <div class="success-message" id="enrollSuccessMessage">
+                <i class="fas fa-check-circle"></i>
+                <span>Enrollment successful! Check your email for course details.</span>
+            </div>
+
+            <form id="enrollmentForm" onsubmit="submitEnrollment(event)">
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label for="enroll-fullname">
+                        <i class="fas fa-user"></i> Full Name *
+                    </label>
+                    <input type="text" id="enroll-fullname" placeholder="John Doe" required>
+                    <div class="error-message" id="enrollFullnameError"></div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="enroll-email">
+                        <i class="fas fa-envelope"></i> Email Address *
+                    </label>
+                    <input type="email" id="enroll-email" placeholder="john@example.com" required>
+                    <div class="error-message" id="enrollEmailError"></div>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                    <label for="enroll-phone">
+                        <i class="fas fa-phone"></i> Phone Number *
+                    </label>
+                    <input type="tel" id="enroll-phone" placeholder="+1 (555) 000-0000" required>
+                    <div class="error-message" id="enrollPhoneError"></div>
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="enroll-dob">
+                            <i class="fas fa-birthday-cake"></i> Date of Birth *
+                        </label>
+                        <input type="date" id="enroll-dob" required>
+                        <div class="error-message" id="enrollDobError"></div>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="form-group">
+                        <label for="enroll-gender">
+                            <i class="fas fa-venus-mars"></i> Gender *
+                        </label>
+                        <select id="enroll-gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="error-message" id="enrollGenderError"></div>
+                    </div>
+                </div>
+
+                <!-- Education Level -->
+                <div class="form-group">
+                    <label for="enroll-education">
+                        <i class="fas fa-graduation-cap"></i> Current Education Level *
+                    </label>
+                    <select id="enroll-education" required>
+                        <option value="">Select Education Level</option>
+                        <option value="High School">High School</option>
+                        <option value="Bachelor's Degree">Bachelor's Degree</option>
+                        <option value="Master's Degree">Master's Degree</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div class="error-message" id="enrollEducationError"></div>
+                </div>
+
+                <!-- Experience Level -->
+                <div class="form-group">
+                    <label for="enroll-experience">
+                        <i class="fas fa-star"></i> Experience Level in This Subject *
+                    </label>
+                    <select id="enroll-experience" required>
+                        <option value="">Select Experience Level</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                    <div class="error-message" id="enrollExperienceError"></div>
+                </div>
+
+                <!-- Learning Mode -->
+                <div class="form-group">
+                    <label for="enroll-mode">
+                        <i class="fas fa-laptop"></i> Preferred Learning Mode *
+                    </label>
+                    <select id="enroll-mode" required>
+                        <option value="">Select Learning Mode</option>
+                        <option value="Online">Online</option>
+                        <option value="Offline">Offline</option>
+                        <option value="Hybrid">Hybrid (Both)</option>
+                    </select>
+                    <div class="error-message" id="enrollModeError"></div>
+                </div>
+
+                <!-- Address -->
+                <div class="form-group">
+                    <label for="enroll-address">
+                        <i class="fas fa-map"></i> Address *
+                    </label>
+                    <input type="text" id="enroll-address" placeholder="123 Main Street, City, State 12345" required>
+                    <div class="error-message" id="enrollAddressError"></div>
+                </div>
+
+                <!-- Motivation -->
+                <div class="form-group">
+                    <label for="enroll-motivation">
+                        <i class="fas fa-heart"></i> Why do you want to take this course? *
+                    </label>
+                    <textarea id="enroll-motivation" placeholder="Tell us what motivates you..." style="min-height: 100px;"></textarea>
+                    <div class="error-message" id="enrollMotivationError"></div>
+                </div>
+
+                <div class="info-box">
+                    <h4>✨ What You'll Get After Enrollment</h4>
+                    <p>✓ Instant course access & learning materials<br>
+                       ✓ Direct access to instructors & support team<br>
+                       ✓ Weekly live classes & recorded sessions<br>
+                       ✓ Certificates upon completion<br>
+                       ✓ Career guidance & placement assistance</p>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-check"></i> Confirm Enrollment
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- ===========================
          FOOTER
@@ -1310,10 +1640,10 @@
 
                 <div class="footer-section">
                     <h4>Quick Links</h4>
-                    <a href="#home">Home</a>
-                    <a href="#about">About Us</a>
-                    <a href="#courses">Courses</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#home" onclick="showSection('home')">Home</a>
+                    <a href="#about" onclick="showSection('about')">About Us</a>
+                    <a href="#courses" onclick="showSection('courses')">Courses</a>
+                    <a href="#contact" onclick="showSection('contact')">Contact</a>
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms & Conditions</a>
                 </div>
@@ -1396,7 +1726,6 @@
                 header.classList.remove('scrolled');
             }
 
-            // Show/hide scroll to top button
             const scrollBtn = document.getElementById('scrollToTop');
             if (window.scrollY > 300) {
                 scrollBtn.classList.add('show');
@@ -1413,10 +1742,10 @@
         }
 
         /* ===========================
-           WELCOME MESSAGE FEATURE
+           WELCOME MESSAGE
            =========================== */
         function showWelcomeMessage() {
-            const message = '🎓 Welcome to Education Hub!\n\nWe are committed to providing quality education and fostering excellence in every student. Explore our courses and discover your potential!\n\nOur programs include:\n• English Literature\n• Mathematics\n• Science\n• Computer Science\n• Languages\n• Arts & Creativity\n\nEnroll today and start your learning journey!';
+            const message = '🎓 Welcome to Education Hub!\n\nWe are committed to providing quality education and fostering excellence in every student.\n\nOur Programs Include:\n• English Literature\n• Mathematics\n• Science\n• Computer Science\n• Languages\n• Arts & Creativity\n\nEnroll today and start your learning journey!';
             alert(message);
         }
 
@@ -1428,146 +1757,209 @@
             return emailRegex.test(email);
         }
 
+        function isValidPhone(phone) {
+            const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+            return phoneRegex.test(phone) && phone.length >= 10;
+        }
+
         /* ===========================
-           FORM SUBMISSION AND VALIDATION
+           ENROLLMENT MODAL
            =========================== */
-        function submitForm(event) {
+        function openEnrollModal(courseName) {
+            document.getElementById('courseName').textContent = courseName;
+            document.getElementById('enrollmentModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEnrollModal() {
+            document.getElementById('enrollmentModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+            document.getElementById('enrollmentForm').reset();
+            document.getElementById('enrollSuccessMessage').classList.remove('show');
+        }
+
+        document.getElementById('enrollmentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeEnrollModal();
+            }
+        });
+
+        /* ===========================
+           ENROLLMENT FORM SUBMISSION
+           =========================== */
+        function submitEnrollment(event) {
             event.preventDefault();
 
-            // Get form values and trim whitespace
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const subject = document.getElementById('subject').value.trim();
-            const message = document.getElementById('message').value.trim();
+            // Get form values
+            const fullname = document.getElementById('enroll-fullname').value.trim();
+            const email = document.getElementById('enroll-email').value.trim();
+            const phone = document.getElementById('enroll-phone').value.trim();
+            const dob = document.getElementById('enroll-dob').value;
+            const gender = document.getElementById('enroll-gender').value;
+            const education = document.getElementById('enroll-education').value;
+            const experience = document.getElementById('enroll-experience').value;
+            const mode = document.getElementById('enroll-mode').value;
+            const address = document.getElementById('enroll-address').value.trim();
+            const motivation = document.getElementById('enroll-motivation').value.trim();
 
-            // Clear all error messages
-            document.getElementById('nameError').style.display = 'none';
-            document.getElementById('emailError').style.display = 'none';
-            document.getElementById('subjectError').style.display = 'none';
-            document.getElementById('messageError').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'none';
+            // Clear errors
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
 
             let isValid = true;
 
-            // Validate name
-            if (name === '' || name.length < 2) {
-                document.getElementById('nameError').style.display = 'block';
+            // Validation
+            if (fullname.length < 2) {
+                document.getElementById('enrollFullnameError').textContent = 'Please enter a valid full name';
                 isValid = false;
             }
 
-            // Validate email
-            if (email === '' || !isValidEmail(email)) {
-                document.getElementById('emailError').style.display = 'block';
+            if (!isValidEmail(email)) {
+                document.getElementById('enrollEmailError').textContent = 'Please enter a valid email';
                 isValid = false;
             }
 
-            // Validate subject
-            if (subject === '' || subject.length < 3) {
-                document.getElementById('subjectError').style.display = 'block';
+            if (!isValidPhone(phone)) {
+                document.getElementById('enrollPhoneError').textContent = 'Please enter a valid phone number';
                 isValid = false;
             }
 
-            // Validate message
-            if (message === '' || message.length < 5) {
-                document.getElementById('messageError').style.display = 'block';
+            if (!dob) {
+                document.getElementById('enrollDobError').textContent = 'Please select your date of birth';
                 isValid = false;
             }
 
-            // If all validations pass
+            if (!gender) {
+                document.getElementById('enrollGenderError').textContent = 'Please select your gender';
+                isValid = false;
+            }
+
+            if (!education) {
+                document.getElementById('enrollEducationError').textContent = 'Please select education level';
+                isValid = false;
+            }
+
+            if (!experience) {
+                document.getElementById('enrollExperienceError').textContent = 'Please select experience level';
+                isValid = false;
+            }
+
+            if (!mode) {
+                document.getElementById('enrollModeError').textContent = 'Please select learning mode';
+                isValid = false;
+            }
+
+            if (address.length < 5) {
+                document.getElementById('enrollAddressError').textContent = 'Please enter a valid address';
+                isValid = false;
+            }
+
+            if (motivation.length < 10) {
+                document.getElementById('enrollMotivationError').textContent = 'Please tell us why you want to take this course';
+                isValid = false;
+            }
+
+            // If valid, show success and log data
             if (isValid) {
-                // Show success message
-                const successMsg = document.getElementById('successMessage');
-                successMsg.style.display = 'flex';
+                const enrollmentData = {
+                    fullname,
+                    email,
+                    phone,
+                    dob,
+                    gender,
+                    education,
+                    experience,
+                    mode,
+                    address,
+                    motivation,
+                    course: document.getElementById('courseName').textContent,
+                    enrollmentDate: new Date().toLocaleString()
+                };
 
-                // Log form data
-                console.log('Form Submitted:', {
-                    name: name,
-                    email: email,
-                    subject: subject,
-                    message: message,
-                    timestamp: new Date().toLocaleString()
-                });
+                console.log('Enrollment Data:', enrollmentData);
+
+                // Show success message
+                document.getElementById('enrollSuccessMessage').classList.add('show');
 
                 // Reset form
+                document.getElementById('enrollmentForm').reset();
+
+                // Close modal after 3 seconds
+                setTimeout(() => {
+                    closeEnrollModal();
+                }, 3000);
+            }
+        }
+
+        /* ===========================
+           CONTACT FORM SUBMISSION
+           =========================== */
+        function submitContactForm(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            const subject = document.getElementById('contact-subject').value.trim();
+            const message = document.getElementById('contact-message').value.trim();
+
+            // Clear errors
+            document.getElementById('contactNameError').style.display = 'none';
+            document.getElementById('contactEmailError').style.display = 'none';
+            document.getElementById('contactSubjectError').style.display = 'none';
+            document.getElementById('contactMessageError').style.display = 'none';
+
+            let isValid = true;
+
+            if (name.length < 2) {
+                document.getElementById('contactNameError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!isValidEmail(email)) {
+                document.getElementById('contactEmailError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (subject.length < 3) {
+                document.getElementById('contactSubjectError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (message.length < 5) {
+                document.getElementById('contactMessageError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                const contactData = {
+                    name,
+                    email,
+                    subject,
+                    message,
+                    timestamp: new Date().toLocaleString()
+                };
+
+                console.log('Contact Message:', contactData);
+
+                document.getElementById('successMessage').classList.add('show');
                 document.getElementById('contactForm').reset();
 
-                // Hide success message after 5 seconds
                 setTimeout(() => {
-                    successMsg.style.display = 'none';
+                    document.getElementById('successMessage').classList.remove('show');
                 }, 5000);
             }
         }
 
         /* ===========================
-           PREVENT DEFAULT LINK BEHAVIOR
+           CLOSE MODALS ON ESCAPE KEY
            =========================== */
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const sectionId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-                    showSection(sectionId);
-                    const navMenu = document.getElementById('navMenu');
-                    navMenu.classList.remove('active');
-                    const menuToggle = document.getElementById('menuToggle');
-                    menuToggle.querySelector('i').classList.add('fa-bars');
-                    menuToggle.querySelector('i').classList.remove('fa-times');
-                });
-            });
-
-            // Add form submission with keyboard support
-            document.getElementById('contactForm').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter' && e.ctrlKey) {
-                    submitForm(e);
-                }
-            });
-        });
-
-        /* ===========================
-           SMOOTH SCROLL ON HASH LINKS
-           =========================== */
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#' && document.querySelector(href)) {
-                    e.preventDefault();
-                    document.querySelector(href).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        /* ===========================
-           ADD LIVE INPUT VALIDATION
-           =========================== */
-        document.getElementById('name').addEventListener('blur', function() {
-            if (this.value.trim().length >= 2) {
-                document.getElementById('nameError').style.display = 'none';
-            }
-        });
-
-        document.getElementById('email').addEventListener('blur', function() {
-            if (isValidEmail(this.value.trim())) {
-                document.getElementById('emailError').style.display = 'none';
-            }
-        });
-
-        document.getElementById('subject').addEventListener('blur', function() {
-            if (this.value.trim().length >= 3) {
-                document.getElementById('subjectError').style.display = 'none';
-            }
-        });
-
-        document.getElementById('message').addEventListener('blur', function() {
-            if (this.value.trim().length >= 5) {
-                document.getElementById('messageError').style.display = 'none';
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeEnrollModal();
             }
         });
 
         /* ===========================
-           PAGE LOAD ANIMATIONS
+           PAGE LOAD
            =========================== */
         window.addEventListener('load', function() {
             document.body.style.opacity = '1';
