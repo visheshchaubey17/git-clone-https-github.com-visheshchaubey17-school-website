@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Hub - Your Premier School</title>
+    
+    <!-- Internal CSS Styling -->
+    <style>
+        /* ===========================
+           RESET AND GLOBAL STYLES
+           =========================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* Container for content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===========================
+           HEADER AND NAVIGATION
+           =========================== */
+        header {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Menu Toggle Button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* ===========================
+           SECTIONS STYLING
+           =========================== */
+        section {
+            padding: 60px 0;
+            min-height: 500px;
+            display: none; /* Hidden by default */
+        }
+
+        section.active {
+            display: block; /* Show active section */
+        }
+
+        /* Home Section */
+        #home {
+            background: linear-gradient(rgba(0, 102, 204, 0.8), rgba(0, 82, 163, 0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f0f0" width="1200" height="600"/><circle cx="150" cy="100" r="80" fill="%23e0e0e0"/><circle cx="1000" cy="500" r="100" fill="%23e0e0e0"/><path d="M200 400 L400 200 L600 400 L800 200 L1000 400" stroke="%23d0d0d0" stroke-width="2" fill="none"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 600px;
+        }
+
+        .welcome-content {
+            animation: slideInUp 0.8s ease;
+        }
+
+        .welcome-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* About Section */
+        #about {
+            background-color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text h2,
+        #courses h2,
+        #contact h2 {
+            font-size: 36px;
+            color: #0066cc;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-highlights {
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+        }
+
+        .highlight-box {
+            background: #e8f4ff;
+            padding: 15px 20px;
+            border-left: 4px solid #0066cc;
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-box:hover {
+            transform: translateX(10px);
+        }
+
+        /* Courses Section */
+        #courses {
+            background-color: #f4f4f4;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .course-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 102, 204, 0.2);
+            border-top: 4px solid #0066cc;
+        }
+
+        .course-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .course-card h3 {
+            color: #0066cc;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .course-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .course-duration {
+            color: #0066cc;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: white;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 8px rgba(0, 102, 204, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Button Styling */
+        button {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .welcome-btn {
+            margin-top: 20px;
+            padding: 15px 40px;
+            font-size: 18px;
+        }
+
+        .submit-btn {
+            width: 100%;
+        }
+
+        /* Error Message Styling */
+        .error-message {
+            color: #d32f2f;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+
+        /* ===========================
+           ANIMATIONS
+           =========================== */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        section.active {
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* ===========================
+           RESPONSIVE DESIGN
+           =========================== */
+        @media (max-width: 768px) {
+            /* Header Responsive */
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                background: #0052a3;
+                padding: 20px 0;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 20px;
+            }
+
+            /* Welcome Content Responsive */
+            .welcome-content h1 {
+                font-size: 32px;
+            }
+
+            .welcome-content p {
+                font-size: 16px;
+            }
+
+            /* About Section Responsive */
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            /* Courses Grid Responsive */
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Contact Form Responsive */
+            .contact-container {
+                padding: 0 20px;
+            }
+
+            /* Section Padding Responsive */
+            section {
+                padding: 40px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-content h1 {
+                font-size: 24px;
+            }
+
+            .welcome-content p {
+                font-size: 14px;
+            }
+
+            .about-text h2,
+            #courses h2,
+            #contact h2 {
+                font-size: 24px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===========================
+         HEADER WITH NAVIGATION
+         =========================== -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🎓 Education Hub</div>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <nav id="navMenu">
+                    <ul>
+                        <li><a onclick="showSection('home')">Home</a></li>
+                        <li><a onclick="showSection('about')">About</a></li>
+                        <li><a onclick="showSection('courses')">Courses</a></li>
+                        <li><a onclick="showSection('contact')">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===========================
+         HOME SECTION
+         =========================== -->
+    <section id="home" class="active">
+        <div class="welcome-content">
+            <h1>Welcome to Education Hub</h1>
+            <p>Empowering students with quality education and skills for success</p>
+            <button class="welcome-btn" onclick="showWelcomeMessage()">Learn More</button>
+        </div>
+    </section>
+
+    <!-- ===========================
+         ABOUT SECTION
+         =========================== -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Our School</h2>
+                    <p>
+                        Education Hub is a leading educational institution dedicated to providing 
+                        quality education and fostering a culture of excellence. Our experienced 
+                        faculty members are committed to nurturing young minds and helping students 
+                        achieve their full potential.
+                    </p>
+                    <p>
+                        With state-of-the-art facilities and a student-centric approach, we ensure 
+                        that every student receives personalized attention and guidance. We believe 
+                        in holistic development and encourage our students to excel academically and 
+                        participate in extracurricular activities.
+                    </p>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-box">
+                        <strong>📚 Expert Faculty</strong>
+                        <p>Highly qualified and experienced teachers dedicated to student success</p>
+                    </div>
+                    <div class="highlight-box">
+                        <strong>🏆 Excellence in Education</strong>
+                        <p>Consistent high academic standards and achievements</p>
+                    </div>
+                    <div class="highlight-box">
+                        <strong>🌍 Global Perspective</strong>
+                        <p>Curriculum designed to prepare students for global challenges</p>
+                    </div>
+                    <div class="highlight-box">
+                        <strong>💻 Modern Facilities</strong>
+                        <p>Advanced laboratories, libraries, and digital learning resources</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================
+         COURSES SECTION
+         =========================== -->
+    <section id="courses">
+        <div class="container">
+            <h2>Our Courses</h2>
+            <div class="courses-grid">
+                <!-- Course 1 -->
+                <div class="course-card">
+                    <div class="course-icon">📖</div>
+                    <h3>English Literature</h3>
+                    <p>
+                        Explore the world of literature, creative writing, and language skills. 
+                        Develop critical thinking and communication abilities through engaging texts 
+                        and interactive discussions.
+                    </p>
+                    <div class="course-duration">Duration: 12 Months</div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card">
+                    <div class="course-icon">🧮</div>
+                    <h3>Mathematics</h3>
+                    <p>
+                        Master mathematical concepts from algebra to calculus. Build problem-solving 
+                        skills and logical reasoning through hands-on practice and real-world applications.
+                    </p>
+                    <div class="course-duration">Duration: 12 Months</div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="course-card">
+                    <div class="course-icon">🔬</div>
+                    <h3>Science</h3>
+                    <p>
+                        Discover the wonders of science through practical experiments and theoretical 
+                        knowledge. Explore physics, chemistry, and biology with state-of-the-art laboratory 
+                        facilities.
+                    </p>
+                    <div class="course-duration">Duration: 12 Months</div>
+                </div>
+
+                <!-- Course 4 -->
+                <div class="course-card">
+                    <div class="course-icon">🌐</div>
+                    <h3>Computer Science</h3>
+                    <p>
+                        Learn programming, web development, and digital literacy. Build expertise in 
+                        cutting-edge technologies and prepare for a career in the tech industry.
+                    </p>
+                    <div class="course-duration">Duration: 6 Months</div>
+                </div>
+
+                <!-- Course 5 -->
+                <div class="course-card">
+                    <div class="course-icon">🗣️</div>
+                    <h3>Languages</h3>
+                    <p>
+                        Master international languages including Spanish, French, and Mandarin Chinese. 
+                        Develop communication skills and cultural understanding in a globalized world.
+                    </p>
+                    <div class="course-duration">Duration: 10 Months</div>
+                </div>
+
+                <!-- Course 6 -->
+                <div class="course-card">
+                    <div class="course-icon">🎨</div>
+                    <h3>Arts & Creativity</h3>
+                    <p>
+                        Express yourself through visual arts, music, and performing arts. Develop artistic 
+                        skills and creative expression in a supportive and inspiring environment.
+                    </p>
+                    <div class="course-duration">Duration: 8 Months</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================
+         CONTACT SECTION
+         =========================== -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <!-- Success Message (Hidden by default) -->
+                <div class="success-message" id="successMessage">
+                    ✓ Thank you! Your message has been sent successfully. We'll get back to you soon!
+                </div>
+
+                <!-- Contact Form -->
+                <form id="contactForm" onsubmit="submitForm(event)">
+                    <!-- Name Field -->
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Enter your full name"
+                        >
+                        <div class="error-message" id="nameError">
+                            Please enter your name
+                        </div>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Enter your email address"
+                        >
+                        <div class="error-message" id="emailError">
+                            Please enter a valid email address
+                        </div>
+                    </div>
+
+                    <!-- Message Field -->
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            placeholder="Enter your message or inquiry"
+                        ></textarea>
+                        <div class="error-message" id="messageError">
+                            Please enter your message
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+
+                <!-- Additional Contact Information -->
+                <div style="margin-top: 40px; padding-top: 40px; border-top: 1px solid #ddd; text-align: center;">
+                    <p><strong>📞 Phone:</strong> +1 (555) 123-4567</p>
+                    <p><strong>📧 Email:</strong> info@educationhub.edu</p>
+                    <p><strong>📍 Address:</strong> 123 Education Street, Learning City, LC 12345</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================
+         FOOTER
+         =========================== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Education Hub. All rights reserved. | Designed for Learning Excellence</p>
+        </div>
+    </footer>
+
+    <!-- ===========================
+         JAVASCRIPT CODE
+         =========================== -->
+    <script>
+        /* ===========================
+           SECTION NAVIGATION
+           =========================== */
+        /**
+         * Function to show/hide sections based on user selection
+         * Removes active class from all sections and adds it to selected section
+         * Also closes mobile menu if open
+         */
+        function showSection(sectionId) {
+            // Get all sections
+            const sections = document.querySelectorAll('section');
+            
+            // Hide all sections by removing active class
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section by adding active class
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Close mobile menu if open
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.remove('active');
+            
+            // Scroll to top of page smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* ===========================
+           MOBILE MENU TOGGLE
+           =========================== */
+        /**
+         * Toggle mobile navigation menu
+         * Shows/hides navigation on small screens
+         */
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        });
+
+        /* ===========================
+           WELCOME MESSAGE FEATURE
+           =========================== */
+        /**
+         * Display welcome message when "Learn More" button is clicked
+         * Shows an alert with a welcome message
+         */
+        function showWelcomeMessage() {
+            alert('🎓 Welcome to Education Hub!\n\nWe are committed to providing quality education and fostering excellence in every student. Explore our courses and discover your potential!');
+        }
+
+        /* ===========================
+           CONTACT FORM VALIDATION
+           =========================== */
+        /**
+         * Function to validate email format
+         * Checks if email follows valid format
+         */
+        function isValidEmail(email) {
+            // Regular expression for email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        /**
+         * Main form submission handler
+         * Validates all fields before submission
+         */
+        function submitForm(event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Clear all error messages initially
+            document.getElementById('nameError').style.display = 'none';
+            document.getElementById('emailError').style.display = 'none';
+            document.getElementById('messageError').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+
+            // Validation flags
+            let isValid = true;
+
+            // Validate name field
+            if (name === '' || name.length < 2) {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate email field
+            if (email === '' || !isValidEmail(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate message field
+            if (message === '' || message.length < 5) {
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            }
+
+            // If all validations pass, show success message
+            if (isValid) {
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Reset form fields
+                document.getElementById('contactForm').reset();
+                
+                // Optional: Log form data (in real application, send to server)
+                console.log('Form Data:', {
+                    name: name,
+                    email: email,
+                    message: message,
+                    timestamp: new Date()
+                });
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        /* ===========================
+           CLOSE MOBILE MENU ON LINK CLICK
+           =========================== */
+        /**
+         * Close mobile menu when a navigation link is clicked
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all navigation links
+            const navLinks = document.querySelectorAll('nav a');
+            
+            // Add click event listener to each link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const navMenu = document.getElementById('navMenu');
+                    navMenu.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
